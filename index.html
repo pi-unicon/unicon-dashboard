@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard สรุปการจัดส่งชุดข้อมูล Unicon ปี 2569</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: #f1f5f9;
+        }
+        .tab-btn.active {
+            background-color: #1e40af;
+            color: #ffffff;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            body {
+                background-color: #ffffff;
+            }
+            .print-break-inside {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body class="text-slate-800 pb-12">
+
+    <div class="bg-slate-900 text-white shadow-md no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+                <div class="flex items-center space-x-3">
+                    <span class="bg-blue-600 text-xs font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider">Unicon 2569</span>
+                    <h1 class="text-2xl md:text-3xl font-bold">Unicon Data Dashboard</h1>
+                </div>
+                <p class="text-slate-400 text-sm mt-1">สรุปติดตามสถานะการจัดส่งชุดข้อมูล Unicon จำแนกตามวิทยาลัยและคณะ</p>
+            </div>
+            <div class="flex items-center gap-3">
+                <button onclick="window.print()" class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2.5 rounded-lg transition shadow-sm">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                    พิมพ์รายงาน / PDF
+                </button>
+                <span style="font-size: 0.875rem; color: #9ca3af; margin-top: 2px;">
+                    ข้อมูล ณ วันที่ 21 กันยายน 2569
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+            <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
+                <div>
+                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">ชุดข้อมูลทั้งหมด</p>
+                    <p class="text-2xl font-extrabold text-slate-800 mt-1">7 ชุดข้อมูล</p>
+                    <p class="text-xs text-slate-500 mt-1">DS1001 - DS4001</p>
+                </div>
+                <div class="p-3 bg-blue-50 text-blue-600 rounded-lg">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                </div>
+            </div>
+            <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
+                <div>
+                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">ส่งสำเร็จสูงสุด</p>
+                    <p class="text-2xl font-extrabold text-emerald-600 mt-1">73.2%</p>
+                    <p class="text-xs text-slate-500 mt-1">ชุดข้อมูล DS1001 (30 แห่ง)</p>
+                </div>
+                <div class="p-3 bg-emerald-50 text-emerald-600 rounded-lg">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
+            </div>
+            <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
+                <div>
+                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">แก้ไข/ไม่ครบ สูงสุด</p>
+                    <p class="text-2xl font-extrabold text-amber-500 mt-1">19 แห่ง</p>
+                    <p class="text-xs text-slate-500 mt-1">ชุดข้อมูลกลุ่มบุคลากร</p>
+                </div>
+                <div class="p-3 bg-amber-50 text-amber-500 rounded-lg">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                </div>
+            </div>
+            <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
+                <div>
+                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">ยังไม่ส่งสูงสุด</p>
+                    <p class="text-2xl font-extrabold text-rose-600 mt-1">14 แห่ง</p>
+                    <p class="text-xs text-slate-500 mt-1">ชุดข้อมูล DS4001</p>
+                </div>
+                <div class="p-3 bg-rose-50 text-rose-600 rounded-lg">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm mb-8 print-break-inside">
+            <div class="flex flex-col md:flex-row md:items-center justify-between pb-4 border-b border-slate-100 gap-2">
+                <div>
+                    <h2 class="text-lg font-bold text-slate-900">เปรียบเทียบภาพรวมสถานะการส่งข้อมูล (Click ที่แท่งเพื่อ Drill-down)</h2>
+                    <p class="text-xs text-slate-500">คลิกที่แท่งกราฟเพื่อดูรายชื่อวิทยาลัยในชุดข้อมูลนั้นๆ</p>
+                </div>
+            </div>
+            <div class="h-72 mt-4">
+                <canvas id="overviewBarChart"></canvas>
+            </div>
+        </div>
+
+        <div class="mb-6 no-print">
+            <div class="flex items-center justify-between mb-3">
+                <h3 class="text-base font-bold text-slate-900">เลือกชุดข้อมูลเพื่อเจาะลึก (Drill-down)</h3>
+                <span id="currentSelectionBadge" class="text-xs font-semibold px-3 py-1 bg-blue-100 text-blue-800 rounded-full">ชุดข้อมูลปัจจุบัน: DS1001</span>
+            </div>
+            <div class="flex flex-wrap gap-2" id="tabContainer">
+                <!-- Dynamic Tabs injected by JavaScript -->
+            </div>
+        </div>
+
+        <div id="detailSection" class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm mb-8 print-break-inside">
+            <div class="flex flex-col md:flex-row md:items-center justify-between pb-6 border-b border-slate-200 gap-4">
+                <div>
+                    <div class="flex items-center space-x-3">
+                        <span id="detailBadge" class="bg-blue-600 text-white font-bold text-sm px-3 py-1 rounded-md">DS1001</span>
+                        <h2 id="detailTitle" class="text-xl font-bold text-slate-900">รายละเอียดชุดข้อมูล DS1001</h2>
+                    </div>
+                    <p id="detailSubtitle" class="text-xs text-slate-500 mt-1">แสดงรายชื่อวิทยาลัยแยกตามสถานะการจัดส่งข้อมูล</p>
+                </div>
+
+                <!-- Search Input -->
+                <div class="relative w-full md:w-72 no-print">
+                    <input type="text" id="searchInput" onkeyup="handleSearch()" placeholder="ค้นหารายชื่อวิทยาลัย..." class="w-full pl-9 pr-4 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                    <svg class="w-4 h-4 text-slate-400 absolute left-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </div>
+            </div>
+
+            <!-- Mini KPI Summary of Selected Dataset -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 my-6">
+                <div class="p-4 bg-emerald-50 border border-emerald-100 rounded-lg">
+                    <span class="text-xs font-bold text-emerald-700 block uppercase">1. จัดส่งแล้ว</span>
+                    <span id="countSuccess" class="text-2xl font-black text-emerald-600">0</span>
+                    <span class="text-xs text-emerald-600"> แห่ง</span>
+                </div>
+                <div class="p-4 bg-amber-50 border border-amber-100 rounded-lg">
+                    <span class="text-xs font-bold text-amber-700 block uppercase">2. ข้อมูลไม่ครบ / แก้ไข</span>
+                    <span id="countPending" class="text-2xl font-black text-amber-600">0</span>
+                    <span class="text-xs text-amber-600"> แห่ง</span>
+                </div>
+                <div class="p-4 bg-rose-50 border border-rose-100 rounded-lg">
+                    <span class="text-xs font-bold text-rose-700 block uppercase">3. ยังไม่ส่ง</span>
+                    <span id="countMissing" class="text-2xl font-black text-rose-600">0</span>
+                    <span class="text-xs text-rose-600"> แห่ง</span>
+                </div>
+                <div class="p-4 bg-slate-100 border border-slate-200 rounded-lg">
+                    <span class="text-xs font-bold text-slate-600 block uppercase">4. เคยส่ง / ยังไม่มีเด็กจบ</span>
+                    <span id="countNa" class="text-2xl font-black text-slate-700">0</span>
+                    <span class="text-xs text-slate-600"> แห่ง</span>
+                </div>
+            </div>
+
+            <!-- Lists of Colleges Classified by 4 Statuses -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Status 1: Success -->
+                <div class="border border-emerald-200 rounded-lg bg-emerald-50/30 overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <div class="bg-emerald-600 text-white font-bold px-4 py-2.5 text-sm flex items-center justify-between">
+                            <span>1. จัดส่งแล้ว</span>
+                            <span id="badgeSuccess" class="bg-emerald-700 text-white text-xs px-2 py-0.5 rounded-full">0</span>
+                        </div>
+                        <div class="p-4">
+                            <ul id="listSuccess" class="space-y-1.5 text-xs text-slate-700 max-h-96 overflow-y-auto pr-1"></ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Status 2: Pending/Incomplete -->
+                <div class="border border-amber-200 rounded-lg bg-amber-50/30 overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <div class="bg-amber-500 text-white font-bold px-4 py-2.5 text-sm flex items-center justify-between">
+                            <span>2. ข้อมูลไม่ครบ / แก้ไข</span>
+                            <span id="badgePending" class="bg-amber-600 text-white text-xs px-2 py-0.5 rounded-full">0</span>
+                        </div>
+                        <div class="p-4">
+                            <ul id="listPending" class="space-y-1.5 text-xs text-slate-700 max-h-96 overflow-y-auto pr-1"></ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Status 3: Missing -->
+                <div class="border border-rose-200 rounded-lg bg-rose-50/30 overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <div class="bg-rose-600 text-white font-bold px-4 py-2.5 text-sm flex items-center justify-between">
+                            <span>3. ยังไม่ส่ง</span>
+                            <span id="badgeMissing" class="bg-rose-700 text-white text-xs px-2 py-0.5 rounded-full">0</span>
+                        </div>
+                        <div class="p-4">
+                            <ul id="listMissing" class="space-y-1.5 text-xs text-slate-700 max-h-96 overflow-y-auto pr-1"></ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Status 4: Previously Sent / No Graduates -->
+                <div class="border border-slate-300 rounded-lg bg-slate-50/50 overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <div class="bg-slate-600 text-white font-bold px-4 py-2.5 text-sm flex items-center justify-between">
+                            <span>4. เคยส่ง / ยังไม่มีเด็กจบ</span>
+                            <span id="badgeNa" class="bg-slate-700 text-white text-xs px-2 py-0.5 rounded-full">0</span>
+                        </div>
+                        <div class="p-4">
+                            <ul id="listNa" class="space-y-1.5 text-xs text-slate-700 max-h-96 overflow-y-auto pr-1"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Data Structure containing detailed list of colleges for all datasets
+        const rawData = {
+            "DS1001": {
+                title: "DS1001 - ข้อมูลพื้นฐานและสถานะวิทยาลัย",
+                success: [
+                    "วพบ. กรุงเทพ", "วพบ. ขอนแก่น", "วพบ. จักรีรัช", "วพบ. ชลบุรี", "วพบ. ชัยนาท", 
+                    "วพบ. เชียงใหม่", "วพบ. ตรัง", "วพบ. จังหวัดนนทบุรี", "วพบ. นพรัตน์วชิระ", "วพบ. นครลำปาง", 
+                    "วพบ. นครราชสีมา", "วพบ. นครศรีธรรมราช", "วพบ. พระพุทธบาท", "วพ. พระปกเกล้า จันทบุรี", "วพบ. พุทธชินราช", 
+                    "วพบ. พะเยา", "วพบ. ยะลา", "วพบ. ราชบุรี", "วพ. ศรีมหาสารคาม", "วพบ. สุพรรณบุรี", 
+                    "วพบ. สุรินทร์", "วพบ. สุราษฎร์ธานี", "วพบ. สงขลา", "วพบ. อุตรดิตถ์", "วพบ. อุดรธานี", 
+                    "วพบ. แพร่", "วสส. จังหวัดชลบุรี", "วสส. จังหวัดพิษณุโลก", "วสส. จังหวัดยะลา", "วทก", "คณะแพทย์"
+                ],
+                pending: [
+                    "วพ. พระจอมเกล้า จังหวัดเพชรบุรี", "วพบ. สวรรค์ประชารักษ์", "วสส. จังหวัดขอนแก่น", 
+                    "วสส. จังหวัดตรัง", "วสส. จังหวัดยะลา", "ว.อภัยภูเบศร จังหวัดปราจีนบุรี"
+                ],
+                missing: [
+                    "วพบ. สระบุรี", "วพบ. สรรพสิทธิประสงค์", "วสส. จังหวัดสุพรรณบุรี", "วสส. จังหวัดอุบลราชธานี", "โครงการจัดตั้งคณะเภสัช"
+                ],
+                na: []
+            },
+            "DS1002": {
+                title: "DS1002 - ข้อมูลผู้สำเร็จการศึกษา",
+                success: [
+                    "วพบ. ชลบุรี", "วพบ. เชียงใหม่", "วพบ. จังหวัดนนทบุรี", "วพ. พระปกเกล้า จันทบุรี", 
+                    "วพบ. สวรรค์ประชารักษ์", "วพบ. สงขลา", "วพบ. อุดรธานี", "วสส. จังหวัดชลบุรี"
+                ],
+                pending: [
+                    "วพบ. พระพุทธบาท", "วสส. จังหวัดขอนแก่น", "วสส. จังหวัดพิษณุโลก", "วสส. จังหวัดยะลา", "ว.อภัยภูเบศร จังหวัดปราจีนบุรี"
+                ],
+                missing: [
+                    "วพบ. สระบุรี", "วพบ. สรรพสิทธิประสงค์", "วสส. จังหวัดตรัง", "วสส. จังหวัดสุพรรณบุรี", 
+                    "วสส. จังหวัดอุบลราชธานี", "คณะแพทย์", "โครงการจัดตั้งคณะเภสัช"
+                ],
+                na: [
+                    "วพบ. กรุงเทพ", "วพบ. ขอนแก่น", "วพบ. จักรีรัช", "วพบ. ชัยนาท", "วพบ. ตรัง", 
+                    "วพบ. นพรัตน์วชิระ", "วพบ. นครลำปาง", "วพบ. นครราชสีมา", "วพบ. นครศรีธรรมราช", "วพ. พระจอมเกล้า จังหวัดเพชรบุรี", 
+                    "วพบ. พุทธชินราช", "วพบ. พะเยา", "วพบ. ยะลา", "วพบ. ราชบุรี", "วพ. ศรีมหาสารคาม", 
+                    "วพบ. สุพรรณบุรี", "วพบ. สุรินทร์", "วพบ. สุราษฎร์ธานี", "วพบ. อุตรดิตถ์", "วพบ. แพร่", "วทก"
+                ]
+            },
+            "DS1003": {
+                title: "DS1003 - ข้อมูลภาวะการมีงานทำของผู้สำเร็จการศึกษา",
+                success: [
+                    "วพบ. ชลบุรี", "วพบ. เชียงใหม่", "วพบ. จังหวัดนนทบุรี", "วพ. พระปกเกล้า จันทบุรี", 
+                    "วพบ. สวรรค์ประชารักษ์", "วพบ. สงขลา", "วพบ. อุดรธานี", "วสส. จังหวัดชลบุรี"
+                ],
+                pending: [
+                    "วพบ. พระพุทธบาท", "วสส. จังหวัดขอนแก่น", "วสส. จังหวัดพิษณุโลก", "วสส. จังหวัดยะลา"
+                ],
+                missing: [
+                    "วพบ. สระบุรี", "วพบ. สรรพสิทธิประสงค์", "วสส. จังหวัดตรัง", "วสส. จังหวัดสุพรรณบุรี", 
+                    "วสส. จังหวัดอุบลราชธานี", "ว.อภัยภูเบศร จังหวัดปราจีนบุรี", "คณะแพทย์", "โครงการจัดตั้งคณะเภสัช"
+                ],
+                na: [
+                    "วพบ. กรุงเทพ", "วพบ. ขอนแก่น", "วพบ. จักรีรัช", "วพบ. ชัยนาท", "วพบ. ตรัง", 
+                    "วพบ. นพรัตน์วชิระ", "วพบ. นครลำปาง", "วพบ. นครราชสีมา", "วพบ. นครศรีธรรมราช", "วพ. พระจอมเกล้า จังหวัดเพชรบุรี", 
+                    "วพบ. พุทธชินราช", "วพบ. พะเยา", "วพบ. ยะลา", "วพบ. ราชบุรี", "วพ. ศรีมหาสารคาม", 
+                    "วพบ. สุพรรณบุรี", "วพบ. สุรินทร์", "วพบ. สุราษฎร์ธานี", "วพบ. อุตรดิตถ์", "วพบ. แพร่", "วทก"
+                ]
+            },
+            "DS2001": {
+                title: "DS2001 - ข้อมูลหลักสูตรการศึกษา",
+                success: [
+                    "คณะพยาบาล", "วพบ. ชลบุรี", "วพบ. ชัยนาท", "วพบ. เชียงใหม่", "วพบ. นพรัตน์วชิระ", 
+                    "วพบ. นครลำปาง", "วพบ. พระพุทธบาท", "วพ. พระปกเกล้า จันทบุรี", "วพบ. พุทธชินราช", "วพบ. พะเยา", 
+                    "วพบ. ยะลา", "วพบ. ราชบุรี", "วพบ. แพร่", "คณะสธ", "วสส. จังหวัดขอนแก่น", 
+                    "วสส. จังหวัดชลบุรี", "วสส. จังหวัดอุบลราชธานี", "วทก", "คณะแพทย์", "โครงการจัดตั้งคณะเภสัช"
+                ],
+                pending: [
+                    "วพบ. กรุงเทพ", "วพบ. ขอนแก่น", "วพบ. ตรัง", "วพบ. จังหวัดนนทบุรี", "วพบ. นครราชสีมา", 
+                    "วพบ. นครศรีธรรมราช", "วพ. พระจอมเกล้า จังหวัดเพชรบุรี", "วพ. ศรีมหาสารคาม", "วพบ. สระบุรี", "วพบ. สุพรรณบุรี", 
+                    "วพบ. สวรรค์ประชารักษ์", "วพบ. สุรินทร์", "วพบ. สุราษฎร์ธานี", "วพบ. สงขลา", "วพบ. อุตรดิตถ์", 
+                    "วพบ. อุดรธานี", "วสส. จังหวัดตรัง", "วสส. จังหวัดพิษณุโลก", "ว.อภัยภูเบศร จังหวัดปราจีนบุรี"
+                ],
+                missing: [
+                    "วพบ. จักรีรัช", "วพบ. สรรพสิทธิประสงค์", "วสส. จังหวัดยะลา", "วสส. จังหวัดสุพรรณบุรี"
+                ],
+                na: []
+            },
+            "DS2003": {
+                title: "DS2003 - ข้อมูลแผนและผลการรับนักศึกษา",
+                success: [
+                    "คณะพยาบาล", "วพบ. ชลบุรี", "วพบ. ชัยนาท", "วพบ. เชียงใหม่", "วพบ. นพรัตน์วชิระ", 
+                    "วพบ. นครลำปาง", "วพบ. พระพุทธบาท", "วพ. พระปกเกล้า จันทบุรี", "วพบ. พุทธชินราช", "วพบ. พะเยา", 
+                    "วพบ. ยะลา", "วพบ. ราชบุรี", "วพบ. แพร่", "คณะสธ", "วสส. จังหวัดขอนแก่น", 
+                    "วสส. จังหวัดชลบุรี", "วสส. จังหวัดอุบลราชธานี", "วทก", "คณะแพทย์", "โครงการจัดตั้งคณะเภสัช"
+                ],
+                pending: [
+                    "วพบ. กรุงเทพ", "วพบ. ขอนแก่น", "วพบ. ตรัง", "วพบ. จังหวัดนนทบุรี", "วพบ. นครราชสีมา", 
+                    "วพบ. นครศรีธรรมราช", "วพ. พระจอมเกล้า จังหวัดเพชรบุรี", "วพ. ศรีมหาสารคาม", "วพบ. สระบุรี", "วพบ. สุพรรณบุรี", 
+                    "วพบ. สวรรค์ประชารักษ์", "วพบ. สุรินทร์", "วพบ. สุราษฎร์ธานี", "วพบ. สงขลา", "วพบ. อุตรดิตถ์", 
+                    "วพบ. อุดรธานี", "วสส. จังหวัดตรัง", "วสส. จังหวัดพิษณุโลก", "ว.อภัยภูเบศร จังหวัดปราจีนบุรี"
+                ],
+                missing: [
+                    "วพบ. จักรีรัช", "วพบ. สรรพสิทธิประสงค์", "วสส. จังหวัดยะลา", "วสส. จังหวัดสุพรรณบุรี"
+                ],
+                na: []
+            },
+            "DS2004": {
+                title: "DS2004 - ข้อมูลอาจารย์และบุคลากรทางการศึกษา",
+                success: [
+                    "คณะพยาบาล", "วพบ. ชลบุรี", "วพบ. ชัยนาท", "วพบ. เชียงใหม่", "วพบ. นพรัตน์วชิระ", 
+                    "วพบ. นครลำปาง", "วพบ. พระพุทธบาท", "วพ. พระปกเกล้า จันทบุรี", "วพบ. พุทธชินราช", "วพบ. พะเยา", 
+                    "วพบ. ยะลา", "วพบ. ราชบุรี", "วพบ. แพร่", "คณะสธ", "วสส. จังหวัดขอนแก่น", 
+                    "วสส. จังหวัดชลบุรี", "วสส. จังหวัดอุบลราชธานี", "วทก", "คณะแพทย์", "โครงการจัดตั้งคณะเภสัช"
+                ],
+                pending: [
+                    "วพบ. กรุงเทพ", "วพบ. ขอนแก่น", "วพบ. ตรัง", "วพบ. จังหวัดนนทบุรี", "วพบ. นครราชสีมา", 
+                    "วพบ. นครศรีธรรมราช", "วพ. พระจอมเกล้า จังหวัดเพชรบุรี", "วพ. ศรีมหาสารคาม", "วพบ. สระบุรี", "วพบ. สุพรรณบุรี", 
+                    "วพบ. สวรรค์ประชารักษ์", "วพบ. สุรินทร์", "วพบ. สุราษฎร์ธานี", "วพบ. สงขลา", "วพบ. อุตรดิตถ์", 
+                    "วพบ. อุดรธานี", "วสส. จังหวัดตรัง", "วสส. จังหวัดพิษณุโลก", "ว.อภัยภูเบศร จังหวัดปราจีนบุรี"
+                ],
+                missing: [
+                    "วพบ. จักรีรัช", "วพบ. สรรพสิทธิประสงค์", "วสส. จังหวัดยะลา", "วสส. จังหวัดสุพรรณบุรี"
+                ],
+                na: []
+            },
+            "DS4001": {
+                title: "DS4001 - ข้อมูลงานวิจัยและนวัตกรรม",
+                success: [
+                    "วพบ. กรุงเทพ", "วพบ. ขอนแก่น", "วพบ. ชลบุรี", "วพบ. ชัยนาท", "วพบ. เชียงใหม่", 
+                    "วพบ. จังหวัดนนทบุรี", "วพบ. นครราชสีมา", "วพบ. นครศรีธรรมราช", "วพบ. พระพุทธบาท", "วพ. พระปกเกล้า จันทบุรี", 
+                    "วพบ. พะเยา", "วพบ. ราชบุรี", "วพ. ศรีมหาสารคาม", "วพบ. สุพรรณบุรี", "วพบ. สวรรค์ประชารักษ์", 
+                    "วพบ. สุรินทร์", "วพบ. สุราษฎร์ธานี", "วพบ. สงขลา", "วพบ. อุตรดิตถ์", "วพบ. อุดรธานี", 
+                    "วพบ. แพร่", "วสส. จังหวัดขอนแก่น", "วสส. จังหวัดชลบุรี", "วสส. จังหวัดตรัง", "วทก", "ว.อภัยภูเบศร จังหวัดปราจีนบุรี"
+                ],
+                pending: [
+                    "วสส. จังหวัดยะลา"
+                ],
+                missing: [
+                    "วพบ. จักรีรัช", "วพบ. ตรัง", "วพบ. นพรัตน์วชิระ", "วพบ. นครลำปาง", "วพ. พระจอมเกล้า จังหวัดเพชรบุรี", 
+                    "วพบ. พุทธชินราช", "วพบ. ยะลา", "วพบ. สระบุรี", "วพบ. สรรพสิทธิประสงค์", "วสส. จังหวัดพิษณุโลก", 
+                    "วสส. จังหวัดสุพรรณบุรี", "วสส. จังหวัดอุบลราชธานี", "คณะแพทย์", "โครงการจัดตั้งคณะเภสัช"
+                ],
+                na: []
+            }
+        };
+
+        let currentDatasetKey = "DS1001";
+        let chartInstance = null;
+
+        function initTabs() {
+            const container = document.getElementById('tabContainer');
+            container.innerHTML = '';
+            Object.keys(rawData).forEach(key => {
+                const btn = document.createElement('button');
+                btn.className = `tab-btn px-4 py-2 rounded-lg font-medium text-sm transition border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 ${key === currentDatasetKey ? 'active' : ''}`;
+                btn.innerText = key;
+                btn.onclick = () => selectDataset(key);
+                container.appendChild(btn);
+            });
+        }
+
+        function selectDataset(key) {
+            currentDatasetKey = key;
+            
+            // Update Tab UI
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                if (btn.innerText === key) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            document.getElementById('currentSelectionBadge').innerText = `ชุดข้อมูลปัจจุบัน: ${key}`;
+            document.getElementById('searchInput').value = ''; // Reset Search Input
+
+            renderDetails();
+        }
+
+        function renderDetails(filterQuery = '') {
+            const data = rawData[currentDatasetKey];
+            const query = filterQuery.trim().toLowerCase();
+
+            document.getElementById('detailBadge').innerText = currentDatasetKey;
+            document.getElementById('detailTitle').innerText = `รายละเอียด${data.title}`;
+
+            // Helper to render lists with search filter
+            const filterList = (arr) => {
+                if (!query) return arr;
+                return arr.filter(item => item.toLowerCase().includes(query));
+            };
+
+            const successList = filterList(data.success);
+            const pendingList = filterList(data.pending);
+            const missingList = filterList(data.missing);
+            const naList = filterList(data.na);
+
+            // Update Counts
+            document.getElementById('countSuccess').innerText = data.success.length;
+            document.getElementById('countPending').innerText = data.pending.length;
+            document.getElementById('countMissing').innerText = data.missing.length;
+            document.getElementById('countNa').innerText = data.na.length;
+
+            document.getElementById('badgeSuccess').innerText = successList.length;
+            document.getElementById('badgePending').innerText = pendingList.length;
+            document.getElementById('badgeMissing').innerText = missingList.length;
+            document.getElementById('badgeNa').innerText = naList.length;
+
+            // Render HTML Lists
+            renderUl('listSuccess', successList, 'text-emerald-800 bg-emerald-100/50');
+            renderUl('listPending', pendingList, 'text-amber-800 bg-amber-100/50');
+            renderUl('listMissing', missingList, 'text-rose-800 bg-rose-100/50');
+            renderUl('listNa', naList, 'text-slate-700 bg-slate-200/50');
+        }
+
+        function renderUl(elementId, items, badgeClass) {
+            const ul = document.getElementById(elementId);
+            ul.innerHTML = '';
+            if (items.length === 0) {
+                ul.innerHTML = `<li class="text-slate-400 italic py-2">ไม่มีข้อมูล</li>`;
+                return;
+            }
+            items.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.className = `p-2 rounded flex items-center justify-between border border-slate-100 ${badgeClass}`;
+                li.innerHTML = `<span class="font-medium">${index + 1}. ${item}</span>`;
+                ul.appendChild(li);
+            });
+        }
+
+        function handleSearch() {
+            const q = document.getElementById('searchInput').value;
+            renderDetails(q);
+        }
+
+        function renderOverviewChart() {
+            const ctx = document.getElementById('overviewBarChart').getContext('2d');
+            const keys = Object.keys(rawData);
+
+            const successData = keys.map(k => rawData[k].success.length);
+            const pendingData = keys.map(k => rawData[k].pending.length);
+            const missingData = keys.map(k => rawData[k].missing.length);
+            const naData = keys.map(k => rawData[k].na.length);
+
+            chartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: keys,
+                    datasets: [
+                        { label: 'จัดส่งแล้ว', data: successData, backgroundColor: '#10b981' },
+                        { label: 'ข้อมูลไม่ครบ / แก้ไข', data: pendingData, backgroundColor: '#f59e0b' },
+                        { label: 'ยังไม่ส่ง', data: missingData, backgroundColor: '#f43f5e' },
+                        { label: 'เคยส่ง / ยังไม่มีเด็กจบ', data: naData, backgroundColor: '#94a3b8' }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    onClick: (event, elements) => {
+                        if (elements.length > 0) {
+                            const index = elements[0].index;
+                            const selectedKey = keys[index];
+                            selectDataset(selectedKey);
+                            document.getElementById('detailSection').scrollIntoView({ behavior: 'smooth' });
+                        }
+                    },
+                    scales: {
+                        x: { stacked: true },
+                        y: { stacked: true, beginAtZero: true }
+                    },
+                    plugins: {
+                        legend: { position: 'bottom', labels: { font: { family: 'Sarabun' } } },
+                        tooltip: {
+                            callbacks: {
+                                footer: (items) => 'คลิกเพื่อดูรายชื่อวิทยาลัย'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        window.onload = function() {
+            initTabs();
+            renderDetails();
+            renderOverviewChart();
+        };
+    </script>
+</body>
+</html>
